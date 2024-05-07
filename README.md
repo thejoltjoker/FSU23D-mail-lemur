@@ -20,40 +20,24 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
  
 
 - Dessa sidor ska finnas:
-
   - Skapa konto (välj typ: kund eller prenumerant)
-
   - Lista alla nyhetsbrev
-
     - Enskilt nyhetsbrev (prenumerera / avregistrera)
-
   - Logga in
-
     - Återställ lösenord
-
       - Ange nytt lösenord
-
     - Utloggad (Endast: meddelande om att man är utloggad)
-
   - Mina sidor (Endast: välkomstmeddelande efter inloggning)
-
     - Mina prenumerationer (för prenumeranter)
-
     - Mina prenumeranter (för kunder)
-
     - Mitt nyhetsbrev / Redigera nyhetsbrev (för kunder)
-
 - Menyn på sidan ska vara annorlunda baserat på om du är kund eller prenumerant
-
   - Meny för utloggad: Alla nyhetsbrev, Logga in, Skapa konto
-
   - Meny för prenumerant: Alla nyhetsbrev, Mina prenumerationer, Logga ut
-
   - Meny för kunder:  Mina prenumeranter, Mitt nyhetsbrev, Logga ut
-
 - Om man försöker visa en sida som man inte har tillgång till (baserat på användarroll) ska det visas ett meddelande om att man inte får det. Alternativt göra en redirect till en sida med samma information
 
- 
+
 
 ### Betyg VG:
 
@@ -73,3 +57,29 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
 ## Denna uppgift mäter följande VG-moment från kursplanen:
 
 - Implementera MVC-ramverk
+
+
+### Sitemap
+Dessa sidor ska finnas:
+
+-- Skapa konto (välj typ: kund eller prenumerant)
+
+-- Lista alla nyhetsbrev
+
+--- Enskilt nyhetsbrev (prenumerera / avregistrera)
+
+-- Logga in
+
+--- Återställ lösenord
+
+---- Ange nytt lösenord
+
+--- Utloggad (Endast: meddelande om att man är utloggad)
+
+-- Mina sidor (Endast: välkomstmeddelande efter inloggning)
+
+--- Mina prenumerationer (för prenumeranter)
+
+--- Mina prenumeranter (för kunder)
+
+--- Mitt nyhetsbrev / Redigera nyhetsbrev (för kunder)
