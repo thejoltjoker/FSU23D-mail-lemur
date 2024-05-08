@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +38,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.register');
+        return view('users.register', ['roles' => Role::all()]);
     }
 
     // Create new user
@@ -45,13 +47,29 @@ class UserController extends Controller
         $form_fields = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required'],
-            'role' => ['required']
+            'password' => ['required']
         ]);
 
+
+
         $form_fields['password'] = Hash::make($form_fields['password']);
+        // $form_fields['role_id'] = Role::where('name', 'subscriber')->first();
+
 
         $user = User::create($form_fields);
+
+
+
+        foreach ($request->all() as $key => $value) {
+            if (Str::startsWith($key, 'role-')) {
+                $roleName = Str::replaceFirst('role-', '', $key);
+                $role = Role::where('name', $roleName)->first();
+                if ($role) {
+                    $user->roles()->attach($role);
+                }
+            }
+        }
+
 
         auth()->login($user);
 

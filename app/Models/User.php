@@ -48,11 +48,16 @@ class User extends Authenticatable
 
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class, 'user_id');
+        return $this->belongsToMany(Newsletter::class, 'subscriptions')->as('subscription');
     }
 
     public function newsletters()
     {
-        return $this->hasMany(Newsletter::class, 'user_id');
+        return $this->hasMany(Newsletter::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }
