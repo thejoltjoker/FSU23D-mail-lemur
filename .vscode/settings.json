@@ -1,10 +1,8 @@
 {
   "workbench.colorCustomizations": {
-    "activityBar.background": "#292E2F",
-    "titleBar.activeBackground": "#394142",
-    "titleBar.activeForeground": "#FBFBFB"
+    "activityBar.background": "#0A323A",
+    "titleBar.activeBackground": "#0E4752",
+    "titleBar.activeForeground": "#F4FCFD"
   },
-  "prettier.documentSelectors": [
-    "**/*.{js,jsx,ts,tsx,vue,html,css,scss,less,json,md,mdx,graphql,yaml,yml,php}"
-  ]
+  "blade.format.enable": true,
 }
