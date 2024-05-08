@@ -23,16 +23,22 @@
         </sl-button>
         <sl-menu>
           <a href="/newsletters/create">
-            <sl-menu-item value="my-newsletters">
+            <sl-menu-item value="my-newsletter">
               <sl-icon slot="prefix" name="pencil-square"></sl-icon>
-              Create newsletter
+              My newsletter
             </sl-menu-item>
           </a>
 
-          <a href="/newsletters/{{auth()->user()->id}}">
-            <sl-menu-item value="my-newsletters">
-              <sl-icon slot="prefix" name="person"></sl-icon>
-              My newsletters
+          <a href="/subscribers">
+            <sl-menu-item value="subscribers">
+              <sl-icon slot="prefix" name="envelope-at"></sl-icon>
+              Subscribers
+            </sl-menu-item>
+          </a>
+          <a href="/subscriptions">
+            <sl-menu-item value="subscriptions">
+              <sl-icon slot="prefix" name="inbox"></sl-icon>
+              Subscriptions
             </sl-menu-item>
           </a>
           <form action="/logout" method="POST" class="w-full">

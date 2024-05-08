@@ -23,7 +23,12 @@ class UserController extends Controller
 
         if (auth()->attempt($form_fields)) {
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect('/')->with([
+                'variant' => 'success',
+                'title' => 'Logged in',
+                'message' => 'You have been successfully logged in'
+            ]);
+            // ->with('title', 'Logged in')->with('message', 'You have been successfully logged in');
         }
 
         return back()->withErrors(['email' => 'Uppgifterna stämmer inte'])->onlyInput('email');
@@ -50,7 +55,11 @@ class UserController extends Controller
 
         auth()->login($user);
 
-        return redirect('/');
+        return redirect('/')->with([
+            'variant' => 'success',
+            'title' => 'Account created',
+            'message' => 'Account was successfully created'
+        ]);;
     }
 
     public function logout(Request $request)
@@ -58,6 +67,10 @@ class UserController extends Controller
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/')->with([
+            'variant' => 'primary',
+            'title' => 'Logged out',
+            'message' => 'You have been successfully logged out'
+        ]);;
     }
 }
