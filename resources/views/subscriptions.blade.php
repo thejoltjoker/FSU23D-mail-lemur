@@ -1,8 +1,9 @@
-@extends('layout')
-@section('content')
-<div class="relative isolate px-6 pt-14 lg:px-8">
-  <div class="mx-auto max-w-screen-md">
-    <x-newsletter_list_item />
+<x-layout>
+  <h2 class="pt-8 text-2xl font-bold">My subscriptions</h2>
+  <div class="flex flex-col gap-2 pt-4">
+    @foreach ($subscriptions as $subscription)
+    <x-newsletter-list-item :newsletter="$subscription" />
+    @endforeach
+
   </div>
-</div>
-@endsection
+</x-layout>

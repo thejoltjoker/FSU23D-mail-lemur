@@ -1,3 +1,4 @@
+{{-- TODO Change items depending on role --}}
 <nav class="max-w-screen-lg mx-auto flex items-center justify-between px-4 w-full h-12">
   <h1 class="font-bold text-xl">
 

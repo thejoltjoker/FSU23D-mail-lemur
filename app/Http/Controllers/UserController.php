@@ -33,7 +33,7 @@ class UserController extends Controller
             // ->with('title', 'Logged in')->with('message', 'You have been successfully logged in');
         }
 
-        return back()->withErrors(['email' => 'Uppgifterna stämmer inte'])->onlyInput('email');
+        return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
 
     public function create()

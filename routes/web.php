@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\SubscriptionController;
 
 Route::get('/', function () {
     return view('home');
@@ -40,12 +41,14 @@ Route::post('/newsletters', [NewsletterController::class, 'store']);
 Route::get('/newsletters/{newsletter}', [NewsletterController::class, 'show']);
 
 // Get user subscriptions
-Route::get('/subscriptions', function () {
-    return view('subscriptions');
-});
+Route::get('/subscriptions', [SubscriptionController::class, 'index']);
+
+// Store a new subscription
+Route::post('/subscriptions', [SubscriptionController::class, 'store']);
+
 
 // Show user subscribers
-Route::get('/newsletters/{newsletter}/subscribers', [SubscriberController::class, 'show']);
+Route::get('/subscribers', [SubscriberController::class, 'index']);
 
 // Password reset
 Route::get('/reset-password', function () {
