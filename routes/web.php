@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\SubscriberController;
 
 Route::get('/', function () {
     return view('home');
@@ -44,9 +45,7 @@ Route::get('/subscriptions', function () {
 });
 
 // Show user subscribers
-Route::get('/subscribers', function () {
-    return view('subscribers');
-});
+Route::get('/newsletters/{newsletter}/subscribers', [SubscriberController::class, 'show']);
 
 // Password reset
 Route::get('/reset-password', function () {
@@ -56,3 +55,13 @@ Route::get('/reset-password', function () {
 Route::get('/reset-password/{token}', function (string $token) {
     return view('auth.create-password', ['token' => $token]);
 })->middleware('guest');
+
+// 403 Unauthorized
+Route::get('/unauthorized', function () {
+    return view('errors.unauthorized');
+});
+
+// 403 Unauthorized
+Route::get('/not-found', function () {
+    return view('errors.not-found');
+});

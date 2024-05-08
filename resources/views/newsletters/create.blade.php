@@ -31,17 +31,18 @@
                 &lt;{{auth()->user()->email}}&gt;
               </span>
             </p>
-
+            <input type="hidden" value="{{auth()->id()}}" class="hidden" name="user_id" />
           </div>
           @endauth
 
 
           <sl-textarea label="Content" help-text="The content of your newsletter."
-            placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit...">
+            placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit..." name="content">
+            {{old('content')}}
           </sl-textarea>
 
           </sl-input>
-          @error('description')
+          @error('content')
           <p class="text-red-500 text-xs -mt-1">
             {{$message}}
           </p>

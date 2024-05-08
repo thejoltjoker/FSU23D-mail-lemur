@@ -1,6 +1,6 @@
 @if (session()->has(['message', 'title', 'variant']))
-<div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-screen-sm px-4" x-data="{show: true}"
-  x-init="setTimeout(()=> show = false, 5000)" x-show="show">
+<div class="fixed top-[calc(100vh-12rem)] left-1/2 -translate-x-1/2 w-full max-w-screen-sm px-4 z-50"
+  x-data="{show: true}" x-init="setTimeout(()=> show = false, 5000)" x-show="show">
   <sl-alert variant="{{session('variant')}}" open class="w-full">
 
     @if (session('variant') === 'success')

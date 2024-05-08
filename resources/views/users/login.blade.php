@@ -15,8 +15,8 @@
           @enderror
           <sl-input type="password" placeholder="Password" password-toggle label="Password" name="password"></sl-input>
 
-          <p class="text-sm">Har du inget konto? <a href="/register" class="text-[--sl-color-primary-500]">Skapa
-              konto</a></p>
+          <p class="text-sm">Don't have an account? <a href="/register" class="text-[--sl-color-primary-500]">Sign
+              up</a></p>
         </div>
         <div slot="footer">
           <sl-button variant="primary" type="submit" class="w-full">Log in</sl-button>

@@ -71,6 +71,6 @@ class UserController extends Controller
             'variant' => 'primary',
             'title' => 'Logged out',
             'message' => 'You have been successfully logged out'
-        ]);;
+        ]);
     }
 }

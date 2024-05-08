@@ -33,7 +33,7 @@
             <sl-radio-button value="subscriber">Subscriber</sl-radio-button>
             <sl-radio-button value="customer">Customer</sl-radio-button>
           </sl-radio-group>
-          <p class="text-sm">Har du redan ett konto? <a href="/login" class="text-[--sl-color-primary-500]">Logga in</a>
+          <p class="text-sm">Already have an account? <a href="/login" class="text-[--sl-color-primary-500]">Log in</a>
           </p>
         </div>
         <div slot="footer">

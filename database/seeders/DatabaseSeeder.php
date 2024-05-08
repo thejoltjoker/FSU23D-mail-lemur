@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'role' => 'subscriber',
+        $user = User::factory()->create([
+            'name' => 'John Doe',
+            'email' => 'john.doe@example.com',
+            'role' => 'customer',
         ]);
 
 
@@ -36,66 +36,66 @@ class DatabaseSeeder extends Seeder
         $content10 = "Unleash your creativity with DIY projects, craft ideas, and home decor inspiration to personalize your living space and express your unique style.";
 
         $newsletters = array(
-            array(
-                "title" => "Green Living Gazette",
-                "description" => "Your guide to eco-friendly living",
-                "author" => "Emily Green",
-                "content" => $content1
-            ),
-            array(
-                "title" => "Wanderlust Weekly",
-                "description" => "Explore the world with us",
-                "author" => "Tom Traveler",
-                "content" => $content2
-            ),
-            array(
-                "title" => "Gourmet Gazette",
-                "description" => "Savor the flavors of the world",
-                "author" => "Chef Cuisine",
-                "content" => $content3
-            ),
-            array(
-                "title" => "Finance Focus",
-                "description" => "Your roadmap to financial freedom",
-                "author" => "Alex Investor",
-                "content" => $content4
-            ),
+            // array(
+            //     "title" => "Green Living Gazette",
+            //     "description" => "Your guide to eco-friendly living",
+            //     "user_id" => $user->id,
+            //     "content" => $content1
+            // ),
+            // array(
+            //     "title" => "Wanderlust Weekly",
+            //     "description" => "Explore the world with us",
+            //     "user_id" => $user->id,
+            //     "content" => $content2
+            // ),
+            // array(
+            //     "title" => "Gourmet Gazette",
+            //     "description" => "Savor the flavors of the world",
+            //     "user_id" => $user->id,
+            //     "content" => $content3
+            // ),
+            // array(
+            //     "title" => "Finance Focus",
+            //     "description" => "Your roadmap to financial freedom",
+            //     "user_id" => $user->id,
+            //     "content" => $content4
+            // ),
             array(
                 "title" => "Tech Trends Today",
                 "description" => "Stay ahead in the digital age",
-                "author" => "Nancy Innovator",
+                "user_id" => $user->id,
                 "content" => $content5
             ),
-            array(
-                "title" => "Personal Growth Pathway",
-                "description" => "Transform your life one step at a time",
-                "author" => "Max Motivation",
-                "content" => $content6
-            ),
-            array(
-                "title" => "Cultural Chronicles",
-                "description" => "Journey through diverse cultures",
-                "author" => "Sara Storyteller",
-                "content" => $content7
-            ),
-            array(
-                "title" => "Mindful Moments",
-                "description" => "Find peace in a hectic world",
-                "author" => "David Zen",
-                "content" => $content8
-            ),
-            array(
-                "title" => "Fit & Fabulous",
-                "description" => "Your guide to a healthier you",
-                "author" => "Lisa Fitness",
-                "content" => $content9
-            ),
-            array(
-                "title" => "Creative Corner",
-                "description" => "Unleash your inner artist",
-                "author" => "Chris Craftsman",
-                "content" => $content10
-            )
+            // array(
+            //     "title" => "Personal Growth Pathway",
+            //     "description" => "Transform your life one step at a time",
+            //     "user_id" => $user->id,
+            //     "content" => $content6
+            // ),
+            // array(
+            //     "title" => "Cultural Chronicles",
+            //     "description" => "Journey through diverse cultures",
+            //     "user_id" => $user->id,
+            //     "content" => $content7
+            // ),
+            // array(
+            //     "title" => "Mindful Moments",
+            //     "description" => "Find peace in a hectic world",
+            //     "user_id" => $user->id,
+            //     "content" => $content8
+            // ),
+            // array(
+            //     "title" => "Fit & Fabulous",
+            //     "description" => "Your guide to a healthier you",
+            //     "user_id" => $user->id,
+            //     "content" => $content9
+            // ),
+            // array(
+            //     "title" => "Creative Corner",
+            //     "description" => "Unleash your inner artist",
+            //     "user_id" => $user->id,
+            //     "content" => $content10
+            // )
         );
 
         foreach ($newsletters as $newsletter) {

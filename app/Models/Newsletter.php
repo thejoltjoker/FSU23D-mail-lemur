@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Newsletter extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'content',
+        'user_id',
+    ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function subscribers()
+    {
+        return $this->hasMany(Subscription::class, 'newsletter_id');
+    }
 }

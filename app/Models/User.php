@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subscription::class, 'user_id');
     }
+
+    public function newsletters()
+    {
+        return $this->hasMany(Newsletter::class, 'user_id');
+    }
 }

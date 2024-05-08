@@ -9,7 +9,7 @@
   <ul class="flex gap-5 items-center">
 
     <li>
-      <a href="/newsletters" class="hover:text-blue-600 transition">
+      <a href="/newsletters" class="hover:text-[--sl-color-primary-600] transition">
         All newsletters
       </a>
     </li>
@@ -22,6 +22,14 @@
           {{auth()->user()->name}}
         </sl-button>
         <sl-menu>
+
+          <sl-menu-item value="role" disabled>
+            <sl-icon slot="prefix" name="person-circle"></sl-icon>
+            {{ucfirst(auth()->user()->role)}}
+          </sl-menu-item>
+
+          <sl-divider></sl-divider>
+
           <a href="/newsletters/create">
             <sl-menu-item value="my-newsletter">
               <sl-icon slot="prefix" name="pencil-square"></sl-icon>
@@ -56,13 +64,13 @@
     </li>
     @else
     <li>
-      <a href="/login" class="hover:text-blue-600 transition">
+      <a href="/login" class="hover:text-[--sl-color-primary-600] transition">
         Log in
       </a>
     </li>
 
     <li>
-      <a href="/register" class="hover:text-blue-600 transition">
+      <a href="/register" class="hover:text-[--sl-color-primary-600] transition">
         Create account
       </a>
     </li>

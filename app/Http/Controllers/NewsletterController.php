@@ -30,13 +30,17 @@ class NewsletterController extends Controller
     {
         $form_fields = $request->validate([
             'title' => ['required'],
-            'description' => ['required', 'email'],
+            'description' => ['required'],
             'content' => ['required'],
-            'author' => ['required']
+            'user_id' => ['required']
         ]);
 
-        $user = Newsletter::create($form_fields);
+        $newsletter = Newsletter::create($form_fields);
 
-        return redirect('/newsletters');
+        return redirect('/newsletters')->with([
+            'variant' => 'success',
+            'title' => 'Newsletter created',
+            'message' => 'Your newsletter was created successfully'
+        ]);
     }
 }

@@ -1,13 +1,12 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/f9Yj_46I)
+
 # FSU23D-Systemutveckling-Uppgift-2
 
 Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kommer ha 2 roller av användare, kunder och prenumeranter, där en kund kan se en lista med uppgifter prenumeranter som har valt att prenumerera på deras nyhetsbrev.
 
-## Kraven för denna uppgift:
+## Kraven för denna uppgift
 
 ### Betyg G
-
- 
 
 - Databasen ska vara MySQL (eller Mariadb).
 - Alla sidor ska vara skrivna i php (ingen react mot api tillåten för denna uppgift).
@@ -16,8 +15,6 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
 - En prenumerant ska enkelt kunna börja prenumerera och sluta prenumerera på ett nyhetsbrev
 - Fungerande inloggning och återställning av lösenord, med epostutskick.
 - Epost ska skickas med en Email service provider (ESP)
-
- 
 
 - Dessa sidor ska finnas:
   - Skapa konto (välj typ: kund eller prenumerant)
@@ -37,9 +34,7 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
   - Meny för kunder:  Mina prenumeranter, Mitt nyhetsbrev, Logga ut
 - Om man försöker visa en sida som man inte har tillgång till (baserat på användarroll) ska det visas ett meddelande om att man inte får det. Alternativt göra en redirect till en sida med samma information
 
-
-
-### Betyg VG:
+### Betyg VG
 
 - En användare ska kunna vara både kund och prenumerant på samma gång.
 - Ett användarkonto ska ha ett personligt salt-värde som används i hash-funktionen för lösenordet
@@ -48,38 +43,37 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
 - “Ange nytt lösenord” måste vara en “hot link” som endast är giltig 20 minuter.
 - Alla sidor ska vara byggda med ett mvc-ramverk (Codeignitor är föreslaget, men andra går bra om man vill)
 
-## Denna uppgift mäter följande moment från kursplanen:
+## Denna uppgift mäter följande moment från kursplanen
 
 - programstruktur för hantering av information, informationsflödeoch användare
 - designa system och kodbaser utifrån arkitektuella principer
 - använda Postman för att testa API:er
 
-## Denna uppgift mäter följande VG-moment från kursplanen:
+## Denna uppgift mäter följande VG-moment från kursplanen
 
 - Implementera MVC-ramverk
 
-
 ### Sitemap
+
 Dessa sidor ska finnas:
 
--- Skapa konto (välj typ: kund eller prenumerant)
+- Skapa konto (välj typ: kund eller prenumerant)
+- Lista alla nyhetsbrev
+  - Enskilt nyhetsbrev (prenumerera / avregistrera)
+- Logga in
+  - Återställ lösenord
+    - Ange nytt lösenord
+  - Utloggad (Endast: meddelande om att man är utloggad)
+- Mina sidor (Endast: välkomstmeddelande efter inloggning)
+  - Mina prenumerationer (för prenumeranter)
+  - Mina prenumeranter (för kunder)
+  - Mitt nyhetsbrev / Redigera nyhetsbrev (för kunder)
 
--- Lista alla nyhetsbrev
+## Setup
 
---- Enskilt nyhetsbrev (prenumerera / avregistrera)
-
--- Logga in
-
---- Återställ lösenord
-
----- Ange nytt lösenord
-
---- Utloggad (Endast: meddelande om att man är utloggad)
-
--- Mina sidor (Endast: välkomstmeddelande efter inloggning)
-
---- Mina prenumerationer (för prenumeranter)
-
---- Mina prenumeranter (för kunder)
-
---- Mitt nyhetsbrev / Redigera nyhetsbrev (för kunder)
+1. Make sure you have Docker Desktop installed and running
+2. `git clone https://github.com/Medieinstitutet/uppgift-2-thejoltjoker.git`
+3. `cd uppgift-2-thejoltjoker`
+4. `./vendor/bin/sail up`
+5. Open new terminal window and run:
+   1. `./vendor/bin/sail artisan migrate:fresh --seed`
