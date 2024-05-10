@@ -16,37 +16,37 @@ Route::get('/', function () {
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 // Store a new user
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
 // Login to existing account
 Route::get('/login', [UserController::class, 'login'])->middleware('guest')->name('login');
 
 // Log out of existing account
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 // Authenticate user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // List all newsletters
-Route::get('/newsletters', [NewsletterController::class, 'index']);
+Route::get('/newsletters', [NewsletterController::class, 'index'])->middleware('auth');
 
 // Form to create a new newsletter
-Route::get('/newsletters/create', [NewsletterController::class, 'create']);
+Route::get('/newsletters/create', [NewsletterController::class, 'create'])->middleware('auth');
 
 // Store a new newsletter
-Route::post('/newsletters', [NewsletterController::class, 'store']);
+Route::post('/newsletters', [NewsletterController::class, 'store'])->middleware('auth');
 
 // Get a single newsletter
 Route::get('/newsletters/{newsletter}', [NewsletterController::class, 'show']);
 
 // Get user subscriptions
-Route::get('/subscriptions', [SubscriptionController::class, 'index']);
+Route::get('/subscriptions', [SubscriptionController::class, 'index'])->middleware('auth');
 
 // Store a new subscription
-Route::post('/subscriptions', [SubscriptionController::class, 'store']);
+Route::post('/subscriptions', [SubscriptionController::class, 'store'])->middleware('auth');
 
 // Show user subscribers
-Route::get('/subscribers', [SubscriberController::class, 'index']);
+Route::get('/subscribers', [SubscriberController::class, 'index'])->middleware('auth');
 
 // Password reset
 Route::get('/reset-password', function () {
