@@ -1,6 +1,6 @@
-<div class="flex justify-center items-center h-[calc(100vh-6rem)]">
-  <div class="mx-auto max-w-screen-md py-32 sm:py-48 lg:py-56">
-    <div class="text-center">
+<div class="flex justify-center items-center h-[calc(100vh-6rem)] max-w-screen-xl mx-auto">
+  <div class="mx-auto basis-4/5 max-w-screen-md py-32 sm:py-48 lg:py-56 -mt-24 grow">
+    <div class="text-left">
       <h1 class="text-4xl font-bold tracking-tight text-stone-900 sm:text-6xl">
         Supercharge Your Business with Newsletters
       </h1>
@@ -10,11 +10,14 @@
         data-driven insights. Dive into our newsletter to uncover strategies
         that will propel your online business forward.
       </p>
-      <div class="mt-10 flex items-center justify-center gap-x-6">
+      <div class="mt-10 flex items-center justify-left gap-x-6">
         <sl-button variant="primary" href="/newsletters">Get started</sl-button>
         <a href="#" class="text-sm font-semibold leading-6 text-stone-900">Learn more <span
             aria-hidden="true">→</span></a>
       </div>
     </div>
+  </div>
+  <div class="max-w-lg -mt-14">
+    <img src="{{asset('images/hero-lemur.png')}}" alt="Mail lemur illustration">
   </div>
 </div>

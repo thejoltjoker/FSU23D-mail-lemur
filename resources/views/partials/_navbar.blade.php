@@ -3,8 +3,9 @@
   <h1 class="font-bold text-xl">
 
     <a href="/" class="inline-flex items-center gap-2">
+      {{-- <img src="{{asset('images/lemur-head.png')}}" alt="Mail lemur logo" class="size-12"> --}}
       <sl-icon name="mailbox-flag"></sl-icon>
-      Newspaper
+      Mail Lemur
     </a>
   </h1>
   <ul class="flex gap-5 items-center">

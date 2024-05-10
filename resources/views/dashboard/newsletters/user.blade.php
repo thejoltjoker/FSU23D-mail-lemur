@@ -6,7 +6,7 @@
   </div>
   <div class="flex flex-col gap-2 mt-20 z-0">
     @foreach ($newsletters as $newsletter)
-    <x-newsletter-list-item :newsletter="$newsletter" />
+    <x-my-newsletter-list-item :newsletter="$newsletter" />
     @endforeach
 
   </div>
