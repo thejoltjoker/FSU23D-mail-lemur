@@ -1,5 +1,5 @@
 @auth
-<form method="POST" action="/subscriptions">
+<form method="POST" action="{{route('dashboard.subscriptions')}}">
   @csrf
   <input type="hidden" name="newsletter_id" value="{{$newsletter->id}}">
   <sl-button variant="success" type="submit">

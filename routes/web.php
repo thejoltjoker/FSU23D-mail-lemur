@@ -50,7 +50,7 @@ Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 Route::get('/login', [UserController::class, 'login'])->middleware('guest')->name('login');
 
 // Log out of existing account
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
 
 // Authenticate user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);

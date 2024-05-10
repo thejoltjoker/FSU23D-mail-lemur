@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -20,15 +20,16 @@ class UserController extends Controller
     {
         $form_fields = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
 
         if (auth()->attempt($form_fields)) {
             $request->session()->regenerate();
-            return redirect('/')->with([
+
+            return redirect(route('dashboard.newsletters.index'))->with([
                 'variant' => 'success',
                 'title' => 'Logged in',
-                'message' => 'You have been successfully logged in'
+                'message' => 'You have been successfully logged in',
             ]);
             // ->with('title', 'Logged in')->with('message', 'You have been successfully logged in');
         }
@@ -47,18 +48,13 @@ class UserController extends Controller
         $form_fields = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
-
-
 
         $form_fields['password'] = Hash::make($form_fields['password']);
         // $form_fields['role_id'] = Role::where('name', 'subscriber')->first();
 
-
         $user = User::create($form_fields);
-
-
 
         foreach ($request->all() as $key => $value) {
             if (Str::startsWith($key, 'role-')) {
@@ -70,14 +66,13 @@ class UserController extends Controller
             }
         }
 
-
         auth()->login($user);
 
         return redirect('/')->with([
             'variant' => 'success',
             'title' => 'Account created',
-            'message' => 'Account was successfully created'
-        ]);;
+            'message' => 'Account was successfully created',
+        ]);
     }
 
     public function logout(Request $request)
@@ -85,10 +80,11 @@ class UserController extends Controller
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/')->with([
             'variant' => 'primary',
             'title' => 'Logged out',
-            'message' => 'You have been successfully logged out'
+            'message' => 'You have been successfully logged out',
         ]);
     }
 }

@@ -25,6 +25,9 @@
         Subscriptions
       </a>
     </li>
+
+    {{-- Customer section --}}
+    @if (Auth::user()->roles->where('name', 'customer')->isNotEmpty())
     <li class="font-bold px-4 pt-2">Manage</li>
     <li>
       <a href="{{route('dashboard.newsletters.index')}}"
@@ -42,5 +45,6 @@
         Subscribers
       </a>
     </li>
+    @endif
   </ul>
 </aside>
