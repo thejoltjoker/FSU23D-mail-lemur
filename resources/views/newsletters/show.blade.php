@@ -2,8 +2,11 @@
   <div class="relative isolate px-6 pt-14 lg:px-8">
     <div class="mx-auto max-w-screen-md flex flex-col">
       <h2 class="font-bold text-3xl">
-        {{$newsletter->title}}
+        {{$newsletter->title}} <span class="text-base font-normal">
+          By {{$newsletter->author->name}}
+        </span>
       </h2>
+
       <p class="italic text-lg">
         {{$newsletter->description}}
       </p>
@@ -13,6 +16,7 @@
       <p class="">
         {{$newsletter->content}}
       </p>
+
       <div class="mt-8 flex justify-between">
         <sl-button variant="neutral" outline href="{{ url()->previous() }}">
           <sl-icon slot="prefix" name="arrow-left"></sl-icon>
