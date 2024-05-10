@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('newsletter_id')->references('id')->on('newsletters')->onDelete('cascade');
             $table->timestamps();
         });
+
     }
 
     /**

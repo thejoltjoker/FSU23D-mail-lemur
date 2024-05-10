@@ -34,10 +34,7 @@
           </sl-button>
 
           <!-- TODO Add unsubscribe functionality -->
-          <sl-button variant="danger" outline>
-            <sl-icon slot="prefix" name="envelope-dash"></sl-icon>
-            Unsubscribe
-          </sl-button>
+          
           <sl-button variant="success" class="">
             <sl-icon slot="prefix" name="envelope-plus"></sl-icon>
             Subscribe

@@ -24,19 +24,24 @@ Route::get('/sandbox', function () {
 // Dashboard
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
     // Newsletters
+    Route::get('/newsletters/user', [NewsletterController::class, 'user'])->name('newsletters.user');
     Route::resource('newsletters', NewsletterController::class);
+
     Route::resource('newsletters.subscribers', NewsletterSubscriberController::class)->only([
         'index', 'store', 'destroy',
     ])->shallow();
 
     // Get user subscriptions
-    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->middleware('auth')->name('subscriptions');
+    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
 
     // Store a new subscription
-    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->middleware('auth');
+    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+
+    // Remove a subscription
+    Route::delete('/subscriptions', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
 
     // Show user subscribers
-    Route::get('/subscribers', [SubscriberController::class, 'index'])->middleware('auth')->name('subscribers');
+    Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscribers');
 
 })->middleware('auth');
 

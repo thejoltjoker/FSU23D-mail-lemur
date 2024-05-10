@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ]);
 
+        $my_user->roles()->attach(Role::all());
+
         // Newsletters
         $content1 = "In this month's edition, we dive deep into the latest trends in sustainable living, offering practical tips for reducing your carbon footprint.";
         $content2 = 'Discover the best travel destinations for 2024, from exotic beaches to bustling cities, and get insider tips on how to make the most of your next adventure.';
