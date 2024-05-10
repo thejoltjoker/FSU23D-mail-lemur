@@ -7,32 +7,34 @@ use Illuminate\Http\Request;
 
 class NewsletterController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        return view('newsletters.index', [
-            'newsletters' => Newsletter::all()
+        return view('dashboard.newsletters.index', [
+            'newsletters' => Newsletter::all(),
         ]);
     }
 
-    public function show(Newsletter $newsletter)
-    {
-        return view('newsletters.show', [
-            'newsletter' => $newsletter
-        ]);
-    }
-
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('newsletters.create', []);
+        return view('dashboard.newsletters.create', []);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $form_fields = $request->validate([
             'title' => ['required'],
             'description' => ['required'],
             'content' => ['required'],
-            'user_id' => ['required']
+            'user_id' => ['required'],
         ]);
 
         $newsletter = Newsletter::create($form_fields);
@@ -40,7 +42,42 @@ class NewsletterController extends Controller
         return redirect('/newsletters')->with([
             'variant' => 'success',
             'title' => 'Newsletter created',
-            'message' => 'Your newsletter was created successfully'
+            'message' => 'Your newsletter was created successfully',
         ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Newsletter $newsletter)
+    {
+        return view('dashboard.newsletters.show', [
+            'newsletter' => $newsletter,
+
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Newsletter $newsletter)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Newsletter $newsletter)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Newsletter $newsletter)
+    {
+        //
     }
 }

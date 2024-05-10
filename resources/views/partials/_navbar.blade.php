@@ -1,5 +1,5 @@
 {{-- TODO Change items depending on role --}}
-<nav class="max-w-screen-lg mx-auto flex items-center justify-between px-4 w-full h-12">
+<nav class="flex items-center justify-between px-4 w-full h-12">
   <h1 class="font-bold text-xl">
 
     <a href="/" class="inline-flex items-center gap-2">
@@ -35,7 +35,7 @@
           <a href="/newsletters/create">
             <sl-menu-item value="my-newsletter">
               <sl-icon slot="prefix" name="pencil-square"></sl-icon>
-              My newsletter
+              My newsletters
             </sl-menu-item>
           </a>
 

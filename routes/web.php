@@ -1,16 +1,44 @@
 <?php
 
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
-use App\Models\Newsletter;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect(route('dashboard.newsletters.index'));
+    }
+
     return view('home');
 });
+
+Route::get('/sandbox', function () {
+    return view('sandbox');
+});
+
+// Dashboard
+Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    // Newsletters
+    Route::resource('newsletters', NewsletterController::class);
+    Route::resource('newsletters.subscribers', NewsletterSubscriberController::class)->only([
+        'index', 'store', 'destroy',
+    ])->shallow();
+
+    // Get user subscriptions
+    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->middleware('auth')->name('subscriptions');
+
+    // Store a new subscription
+    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->middleware('auth');
+
+    // Show user subscribers
+    Route::get('/subscribers', [SubscriberController::class, 'index'])->middleware('auth')->name('subscribers');
+
+})->middleware('auth');
 
 // Register account
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
@@ -26,27 +54,6 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 // Authenticate user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-
-// List all newsletters
-Route::get('/newsletters', [NewsletterController::class, 'index'])->middleware('auth');
-
-// Form to create a new newsletter
-Route::get('/newsletters/create', [NewsletterController::class, 'create'])->middleware('auth');
-
-// Store a new newsletter
-Route::post('/newsletters', [NewsletterController::class, 'store'])->middleware('auth');
-
-// Get a single newsletter
-Route::get('/newsletters/{newsletter}', [NewsletterController::class, 'show']);
-
-// Get user subscriptions
-Route::get('/subscriptions', [SubscriptionController::class, 'index'])->middleware('auth');
-
-// Store a new subscription
-Route::post('/subscriptions', [SubscriptionController::class, 'store'])->middleware('auth');
-
-// Show user subscribers
-Route::get('/subscribers', [SubscriberController::class, 'index'])->middleware('auth');
 
 // Password reset
 Route::get('/reset-password', function () {

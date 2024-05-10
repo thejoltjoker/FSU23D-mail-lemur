@@ -57,17 +57,24 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
 
 Dessa sidor ska finnas:
 
-- Skapa konto (välj typ: kund eller prenumerant)
-- Lista alla nyhetsbrev
-  - Enskilt nyhetsbrev (prenumerera / avregistrera)
-- Logga in
-  - Återställ lösenord
-    - Ange nytt lösenord
-  - Utloggad (Endast: meddelande om att man är utloggad)
+- `GET /register` Skapa konto (välj typ: kund eller prenumerant)
+- `GET /login` Logga in
+- `GET /create-password` Ange nytt lösenord
+- `GET /reset-password` Återställ lösenord
+
+- `GET /newsletters` Lista alla nyhetsbrev | index
+- `GET /newsletters/create` Skapa nyhetsbrev (för kunder) | create
+- `POST /newsletters` Skapa nyhetsbrev i databasen | store
+- `GET /newsletters/{id}/edit` Redigera nyhetsbrev (för kunder) | edit
+- `PUT /newsletters/{id}` Lagra ändringar för nyhetsbrev | update
+- `DELETE /newsletters/{id}` Ta bort nyhetsbrev | destroy
+- `GET /newsletters/{id}` Enskilt nyhetsbrev (prenumerera / avregistrera) | show
+
 - Mina sidor (Endast: välkomstmeddelande efter inloggning)
+- `GET /users/{id}/newsletters` Mina nyhetsbrev
   - Mina prenumerationer (för prenumeranter)
   - Mina prenumeranter (för kunder)
-  - Mitt nyhetsbrev / Redigera nyhetsbrev (för kunder)
+  - 
 
 ## Setup
 
@@ -77,3 +84,5 @@ Dessa sidor ska finnas:
 4. `./vendor/bin/sail up`
 5. Open new terminal window and run:
    1. `./vendor/bin/sail artisan migrate:fresh --seed`
+
+

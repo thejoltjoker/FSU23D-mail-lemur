@@ -10,7 +10,7 @@
       </p>
     </div>
     <div class="ml-auto flex gap-2">
-      <sl-button variant="primary" class="" outline href="/newsletters/{{$newsletter->id}}">
+      <sl-button variant="primary" class="" outline href="{{route('dashboard.newsletters.show', $newsletter->id)}}">
         <sl-icon slot="prefix" name="eyeglasses"></sl-icon>
         Read more
       </sl-button>

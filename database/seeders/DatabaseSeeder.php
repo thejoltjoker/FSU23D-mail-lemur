@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
         // Setup roles
         $this->call(RoleSeeder::class);
 
-        $user = User::factory()->create([
+        $default_user = User::factory()->create([
             'name' => 'John Doe',
             'email' => 'john.doe@example.com',
             // 'role_id' => Role::where('name', 'subscriber')->first(),
         ]);
 
-        User::factory()->create([
+        $my_user = User::factory()->create([
             'name' => 'Johannes Andersson',
             'email' => 'johannes.andersson@medieinstitutet.se',
             'password' => Hash::make('12345678'),
@@ -49,61 +49,61 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Green Living Gazette',
                 'description' => 'Your guide to eco-friendly living',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content1,
             ],
             [
                 'title' => 'Wanderlust Weekly',
                 'description' => 'Explore the world with us',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content2,
             ],
             [
                 'title' => 'Gourmet Gazette',
                 'description' => 'Savor the flavors of the world',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content3,
             ],
             [
                 'title' => 'Finance Focus',
                 'description' => 'Your roadmap to financial freedom',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content4,
             ],
             [
                 'title' => 'Tech Trends Today',
                 'description' => 'Stay ahead in the digital age',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content5,
             ],
             [
                 'title' => 'Personal Growth Pathway',
                 'description' => 'Transform your life one step at a time',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content6,
             ],
             [
                 'title' => 'Cultural Chronicles',
                 'description' => 'Journey through diverse cultures',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content7,
             ],
             [
                 'title' => 'Mindful Moments',
                 'description' => 'Find peace in a hectic world',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content8,
             ],
             [
                 'title' => 'Fit & Fabulous',
                 'description' => 'Your guide to a healthier you',
-                'user_id' => $user->id,
+                'user_id' => $default_user->id,
                 'content' => $content9,
             ],
             [
                 'title' => 'Creative Corner',
                 'description' => 'Unleash your inner artist',
-                'user_id' => $user->id,
+                'user_id' => $my_user->id,
                 'content' => $content10,
             ],
         ];
