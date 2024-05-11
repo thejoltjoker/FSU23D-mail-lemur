@@ -66,6 +66,7 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth')->n
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Password reset
+// TODO Move into new controller
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
