@@ -14,7 +14,8 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'log'),
+    // 'default' => env('MAIL_MAILER', 'log'), // For Mailpit http://localhost:8025/
+    'default' => 'mailgun',
 
     /*
     |--------------------------------------------------------------------------
@@ -117,7 +118,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'name' => env('MAIL_FROM_NAME', 'Mail Lemur'),
     ],
 
 ];

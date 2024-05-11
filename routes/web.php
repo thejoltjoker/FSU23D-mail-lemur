@@ -5,9 +5,14 @@ use App\Http\Controllers\NewsletterSubscriberController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 Route::get('/', function () {
     if (Auth::check()) {
@@ -61,13 +66,59 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth')->n
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Password reset
-Route::get('/reset-password', function () {
-    return view('auth.reset-password');
-})->middleware('guest');
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
 
-Route::get('/create-password', function () {
-    return view('auth.create-password');
-})->middleware('guest');
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])->with([
+                    'variant' => 'success',
+                    'title' => 'Reset Link Sent',
+                    'message' => 'Reset link sent successfully.',
+                ])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('auth.reset-password', ['token' => $token, 'email' => request('email')]);
+})->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:1|confirmed',
+    ]);
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function (User $user, string $password) {
+            $user->forceFill([
+                'password' => Hash::make($password),
+            ])->setRememberToken(Str::random(60));
+
+            $user->save();
+
+            event(new PasswordReset($user));
+        }
+    );
+
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))->with([
+                    'variant' => 'success',
+                    'title' => 'Password Reset',
+                    'message' => 'Your password has been successfully reset.',
+                ])
+
+                : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
 
 // 403 Unauthorized
 Route::get('/unauthorized', function () {
