@@ -4,10 +4,7 @@
       My newsletters
     </x-dashboard.content-header>
   </div>
-  <div class="flex flex-col gap-2 mt-20 z-0">
-    @foreach ($newsletters as $newsletter)
-    <x-my-newsletter-list-item :newsletter="$newsletter" />
-    @endforeach
-
+  <div class="mt-20">
+    <x-dashboard.newsletters.table :newsletters="$newsletters" />
   </div>
 </x-dashboard.layout>

@@ -34,7 +34,7 @@
           </sl-button>
 
           <!-- TODO Add unsubscribe functionality -->
-          
+
           <sl-button variant="success" class="">
             <sl-icon slot="prefix" name="envelope-plus"></sl-icon>
             Subscribe
@@ -47,15 +47,15 @@
           Subscribers
         </h3>
         <div class="flex justify-between flex-col gap-2">
-          @foreach ($newsletter->subscribers as $subscriber)
+          @foreach ($newsletter->subscriptions as $subscription)
           <sl-card class="card-basic w-full">
             <div class="w-full flex items-center gap-4">
               <sl-avatar label="User avatar"></sl-avatar>
               <div class="flex flex-col">
                 <h4 class="text-lg font-bold">
-                  {{$subscriber->name}}
+                  {{$subscription->name}}
                 </h4>
-                <p class="opacity-50">{{$subscriber->email}}</p>
+                <p class="opacity-50">{{$subscription->email}}</p>
               </div>
               <!-- TODO Add remove subscriber functionality -->
               <sl-button variant="danger" class="ml-auto" outline>Remove</sl-button>

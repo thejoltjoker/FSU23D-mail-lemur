@@ -1,3 +1,5 @@
-.active {
-    color: var(--sl-color-primary-600);
+.label::part(form-control-label) {
+    text-align: right;
+    color: red;
+    font-size
 }

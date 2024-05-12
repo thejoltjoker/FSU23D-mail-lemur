@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('newsletters', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
-            $table->longText('content');
+            $table->string('tagline');
+            $table->longText('description');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });

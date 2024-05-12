@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,18 +9,19 @@ class SubscriberController extends Controller
 {
     public function index(Request $request)
     {
+        $all_subscribers = [];
         $user = Auth::user();
-        $newsletters = $user->newsletters;
+        $newsletters = $user->newsletters()->with('subscriptions')->get();
 
-        return view('subscriber.show', [
-            'subscribers' => $newsletters->subscriptions()->get(),
-        ]);
-    }
+        foreach ($newsletters as $newsletter) {
+            $subscribers = $newsletter->subscriptions()->get();
+            foreach ($subscribers as $subscriber) {
+                array_push($all_subscribers, $subscriber);
+            }
+        }
 
-    public function show(Newsletter $newsletter)
-    {
-        return view('subscriber.show', [
-            'subscribers' => $newsletter->subscriptions()->get(),
+        return view('dashboard.subscribers', [
+            'subscribers' => $all_subscribers,
         ]);
     }
 }

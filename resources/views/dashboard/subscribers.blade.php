@@ -1,8 +1,10 @@
-@extends('layout')
-@section('content')
-<div class="relative isolate px-6 pt-14 lg:px-8">
-  <div class="mx-auto max-w-screen-md">
-    <x-subscriber_list_item />
+<x-dashboard.layout>
+  <div class="fixed h-20 w-full z-10">
+    <x-dashboard.content-header>
+      Your subscribers
+    </x-dashboard.content-header>
   </div>
-</div>
-@endsection
+  <div class="mt-20">
+    <x-dashboard.subscribers.table :subscribers="$subscribers" />
+  </div>
+</x-dashboard.layout>
