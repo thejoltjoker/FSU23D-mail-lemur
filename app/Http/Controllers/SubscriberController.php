@@ -14,14 +14,14 @@ class SubscriberController extends Controller
         $newsletters = $user->newsletters;
 
         return view('subscriber.show', [
-            'subscribers' => $newsletters->subscribers()->get(),
+            'subscribers' => $newsletters->subscriptions()->get(),
         ]);
     }
 
     public function show(Newsletter $newsletter)
     {
         return view('subscriber.show', [
-            'subscribers' => $newsletter->subscribers()->get(),
+            'subscribers' => $newsletter->subscriptions()->get(),
         ]);
     }
 }

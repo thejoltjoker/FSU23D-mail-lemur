@@ -27,9 +27,10 @@ Route::get('/sandbox', function () {
 });
 
 // Dashboard
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
+Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
     // Newsletters
     Route::get('/newsletters/user', [NewsletterController::class, 'user'])->name('newsletters.user');
+
     Route::resource('newsletters', NewsletterController::class);
 
     Route::resource('newsletters.subscribers', NewsletterSubscriberController::class)->only([
@@ -43,12 +44,13 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
 
     // Remove a subscription
+    // TODO Fix bug where unsubscribe deletes newsletter
     Route::delete('/subscriptions', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
 
     // Show user subscribers
     Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscribers');
 
-})->middleware('auth');
+});
 
 // Register account
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');

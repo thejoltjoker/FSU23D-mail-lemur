@@ -16,7 +16,7 @@ class NewsletterSubscriberController extends Controller
         $newsletters = $user->newsletters;
 
         return view('subscriber.show', [
-            'subscribers' => $newsletters->subscribers()->get(),
+            'subscriptions' => $newsletters->subscriptions()->get(),
         ]);
     }
 

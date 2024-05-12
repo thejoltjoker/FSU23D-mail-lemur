@@ -39,13 +39,11 @@ class SubscriptionController extends Controller
 
     public function destroy(Request $request)
     {
-        // TODO
-
         $newsletter = Newsletter::where('id', $request->newsletter_id)->first();
 
         if (Auth::check()) {
             $user = Auth::user();
-            $subscription = $user->subscriptions()->where('newsletter_id', $request->newsletter_id)->first()->delete();
+            $user->subscriptions()->detach($newsletter);
 
             return redirect($request->header('referer'))->with([
                 'variant' => 'success',

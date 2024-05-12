@@ -21,7 +21,7 @@ class Newsletter extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function subscribers()
+    public function subscriptions()
     {
         return $this->belongsToMany(User::class, 'subscriptions')->as('subscription');
     }
