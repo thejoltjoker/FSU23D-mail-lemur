@@ -28,17 +28,8 @@
         </p>
 
         <div class="flex justify-between mb-8">
-          <sl-button variant="neutral" outline href="{{ url()->previous() }}">
-            <sl-icon slot="prefix" name="arrow-left"></sl-icon>
-            Go back
-          </sl-button>
 
-          <!-- TODO Add unsubscribe functionality -->
-
-          <sl-button variant="success" class="">
-            <sl-icon slot="prefix" name="envelope-plus"></sl-icon>
-            Subscribe
-          </sl-button>
+          <x-dashboard.subscribe-button :newsletter="$newsletter" />
         </div>
 
         @auth

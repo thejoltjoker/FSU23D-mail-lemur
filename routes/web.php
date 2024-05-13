@@ -22,8 +22,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/sandbox', function () {
-    return view('sandbox');
+Route::get('/newsletters', function () {
+    return redirect(route('dashboard.newsletters.index'));
 });
 
 // Dashboard

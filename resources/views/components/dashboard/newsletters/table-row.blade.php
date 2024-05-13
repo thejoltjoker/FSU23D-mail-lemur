@@ -22,7 +22,10 @@
         <sl-icon slot="prefix" name="eye"></sl-icon>
         View
       </sl-button>
-      <x-dashboard.subscribe-button :newsletter="$newsletter" />
+      @php
+      $user = Auth::user();
+      @endphp
+      <x-dashboard.subscribe-button size="small" :$newsletter :$user />
     </div>
   </td>
 </tr>
