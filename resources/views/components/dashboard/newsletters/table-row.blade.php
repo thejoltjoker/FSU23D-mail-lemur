@@ -1,6 +1,7 @@
 <tr class="bg-white border-b border-stone-300 hover:bg-stone-50 transition">
   <td class="py-4 ps-4">
-    <a class="text-base font-bold transition-all">
+    <a class="text-base font-bold transition-all hover:text-[--sl-color-primary-600]"
+      href="{{route('dashboard.newsletters.show', $newsletter)}}">
       {{$newsletter->title}}
     </a>
     <p class="text-stone-500">

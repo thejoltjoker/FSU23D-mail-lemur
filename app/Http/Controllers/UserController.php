@@ -11,9 +11,9 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
-        return view('users.login');
+        return view('users.login', ['request' => $request]);
     }
 
     public function authenticate(Request $request)
@@ -25,8 +25,9 @@ class UserController extends Controller
 
         if (auth()->attempt($form_fields)) {
             $request->session()->regenerate();
+            $redirect_url = $request->redirect ?? route('dashboard.newsletters.index');
 
-            return redirect(route('dashboard.newsletters.index'))->with([
+            return redirect($redirect_url)->with([
                 'variant' => 'success',
                 'title' => 'Logged in',
                 'message' => 'You have been successfully logged in',

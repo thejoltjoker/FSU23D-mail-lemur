@@ -1,11 +1,25 @@
+@php
+$user = Auth::user();
+@endphp
 <x-dashboard.layout>
-  <div class="fixed h-20 w-full z-10">
+  <div class="fixed h-20 z-10 w-full w-[calc(100vw-18rem)]">
     <x-dashboard.content-header>
-      {{-- Newsletter #{{$newsletter->id}} --}}
-      <sl-button variant="neutral" outline href="{{ url()->previous() }}">
-        <sl-icon slot="prefix" name="arrow-left"></sl-icon>
-        Go back
-      </sl-button>
+      <div class="grid grid-cols-3 w-full">
+
+        <div>
+          <sl-button variant="neutral" outline href="{{ route('dashboard.newsletters.index') }}">
+            <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+            Go back
+          </sl-button>
+        </div>
+
+
+        <div class="text-center">
+          <x-dashboard.subscribe-button size="medium" :$newsletter :$user />
+        </div>
+
+      </div>
+
     </x-dashboard.content-header>
   </div>
   <div class="flex flex-col gap-2 mt-20 z-0">
@@ -27,10 +41,7 @@
           {{$newsletter->content}}
         </p>
 
-        <div class="flex justify-between mb-8">
 
-          <x-dashboard.subscribe-button :newsletter="$newsletter" />
-        </div>
 
         @auth
         @if ($newsletter->author->id == Auth::id())

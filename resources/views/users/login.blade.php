@@ -7,6 +7,7 @@
           Login
         </div>
         <div class="flex flex-col gap-4">
+          <input type="hidden" name="redirect" value="{{$request->redirect}}">
           <sl-input placeholder="Email" label="Email" value="{{old('email')}}" name="email"></sl-input>
           @error('email')
           <p class="text-red-500 text-xs -mt-1">

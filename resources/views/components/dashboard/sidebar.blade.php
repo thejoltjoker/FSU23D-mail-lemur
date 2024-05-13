@@ -1,4 +1,4 @@
-<aside class="min-h-full border-r border-stone-300 w-80 bg-white">
+<aside class="min-h-full border-r border-stone-300 min-w-64 w-64 bg-white">
   <div class="p-4 h-20 flex items-center border-b border-stone-300">
     <sl-button class="w-full" variant="primary" outline href="{{route('dashboard.newsletters.create')}}">
       <a href="{{route('dashboard.newsletters.create')}}">

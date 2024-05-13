@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
+use App\Models\Newsletter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -23,7 +24,8 @@ Route::get('/', function () {
 });
 
 Route::get('/newsletters', function () {
-    return redirect(route('dashboard.newsletters.index'));
+    return view('newsletters', ['newsletters' => Newsletter::all()]);
+    // return redirect(route('dashboard.newsletters.index'));
 });
 
 // Dashboard

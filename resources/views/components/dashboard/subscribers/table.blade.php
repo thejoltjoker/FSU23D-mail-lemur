@@ -4,7 +4,7 @@
       <th class="font-normal px-4 py-2">Name</th>
       <th class="font-normal py-2">Email</th>
       <th class="font-normal py-2">Newsletter</th>
-      <th class="font-normal py-2 pe-4">Actions</th>
+      {{-- <th class="font-normal py-2 pe-4">Actions</th> --}}
     </tr>
   </thead>
 

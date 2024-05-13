@@ -15,9 +15,9 @@
     </p>
   </td>
 
-  <td class="w-1 whitespace-nowrap pe-4">
+  {{-- <td class="w-1 whitespace-nowrap pe-4">
     <div class="flex gap-2">
       <x-dashboard.subscribers.subscriber-button :newsletter="$subscriber" />
     </div>
-  </td>
+  </td> --}}
 </tr>

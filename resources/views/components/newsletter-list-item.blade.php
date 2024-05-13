@@ -6,36 +6,20 @@
         {{$newsletter->title}}
       </h4>
       <p>
-        {{$newsletter->description}}
+        {{$newsletter->tagline}}
       </p>
     </div>
     <div class="ml-auto flex gap-2">
       <sl-button variant="primary" class="" outline href="{{route('dashboard.newsletters.show', $newsletter->id)}}">
-        <sl-icon slot="prefix" name="eyeglasses"></sl-icon>
-        Read more
+        <sl-icon slot="prefix" name="eye"></sl-icon>
+        View
       </sl-button>
-      @if (Auth::user()->subscriptions->where('id', $newsletter->id)->isNotEmpty())
-      <form method="POST" action="{{route('dashboard.subscriptions.destroy')}}">
-        @method('DELETE')
-        @csrf
-        <input type="hidden" name="newsletter_id" value="{{$newsletter->id}}">
-        <sl-button variant="danger" outline type="submit">
-          <sl-icon slot="prefix" name="envelope-dash"></sl-icon>
-          Unsubscribe
-        </sl-button>
-      </form>
-      @else
-      <form method="POST" action="{{route('dashboard.subscriptions.store')}}">
-        @csrf
-        <input type="hidden" name="newsletter_id" value="{{$newsletter->id}}">
-        <sl-button variant="success" type="submit">
-          <sl-icon slot="prefix" name="envelope-plus"></sl-icon>
-          Subscribe
-        </sl-button>
-      </form>
-      @endif
 
-
+      <sl-button variant="success" type="submit"
+        href="{{route('login')}}?redirect={{route('dashboard.newsletters.show', $newsletter->id)}}">
+        <sl-icon slot="prefix" name="bookmark"></sl-icon>
+        Subscribe
+      </sl-button>
     </div>
   </div>
 </sl-card>

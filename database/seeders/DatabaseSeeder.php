@@ -113,5 +113,7 @@ class DatabaseSeeder extends Seeder
         foreach ($newsletters as $newsletter) {
             Newsletter::create($newsletter);
         }
+
+        $default_user->subscriptions()->attach(Newsletter::where('user_id', $my_user->id)->first());
     }
 }
