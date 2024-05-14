@@ -18,7 +18,6 @@
       </p>
       @enderror
 
-
       <sl-input placeholder="The latest about me" label="Tagline" value="{{old('tagline')}}" name="tagline"
         class="[&::part(form-control-label)]:text-lg [&::part(form-control-label)]:mb-2">
       </sl-input>
@@ -27,9 +26,6 @@
         {{$message}}
       </p>
       @enderror
-
-
-
 
       <sl-textarea label="Description" placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit..."
         name="description" class="[&::part(form-control-label)]:text-lg [&::part(form-control-label)]:mb-2">
@@ -60,9 +56,5 @@
       <sl-button variant="primary" type="submit">Create</sl-button>
       <sl-button variant="danger" outline>Discard</sl-button>
     </div>
-
-
-
   </form>
-
 </x-dashboard.layout>
