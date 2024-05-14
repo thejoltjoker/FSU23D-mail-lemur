@@ -1,22 +1,22 @@
 <?php
 
-use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\NewsletterSubscriberController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SubscriberController;
-use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\UserController;
 use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\Request;
-use App\Http\Middleware\CustomerCheck;
 use App\Models\Newsletter;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
+use App\Http\Middleware\CustomerCheck;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\NewsletterSubscriberController;
 
 Route::get('/', function () {
     if (Auth::check()) {
