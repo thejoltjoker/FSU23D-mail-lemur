@@ -13,10 +13,12 @@ $user = Auth::user();
           </sl-button>
         </div>
 
+        @if ($newsletter->author->id != $user->id)
 
         <div class="text-center">
           <x-dashboard.subscribe-button size="medium" :$newsletter :$user />
         </div>
+        @endif
 
       </div>
 
@@ -25,42 +27,45 @@ $user = Auth::user();
   <div class="flex flex-col gap-2 mt-20 z-0">
     <div class="relative isolate px-6 pt-14 lg:px-8">
       <div class="mx-auto max-w-screen-md flex flex-col">
-        <h2 class="font-bold text-3xl">
-          {{$newsletter->title}} <span class="text-base font-normal">
+        <div class="flex items-end justify-between w-full">
+          <h2 class="font-bold text-3xl">
+            {{$newsletter->title}}
+          </h2>
+          <span class="text-base font-normal text-right">
             By {{$newsletter->author->name}}
           </span>
-        </h2>
+        </div>
 
         <p class="italic text-lg">
-          {{$newsletter->description}}
+          {{$newsletter->tagline}}
         </p>
         <p class="opacity-50 mb-4">
           Created <sl-relative-time date="{{$newsletter->created_at}}"></sl-relative-time>
         </p>
         <p class="">
-          {{$newsletter->content}}
+          {{$newsletter->description}}
         </p>
 
 
 
         @auth
         @if ($newsletter->author->id == Auth::id())
-        <h3 class="font-bold text-3xl mt-8 mb-2">
+        <h3 id="subscribers" class="font-bold text-3xl mt-8 mb-2">
           Subscribers
         </h3>
         <div class="flex justify-between flex-col gap-2">
           @foreach ($newsletter->subscriptions as $subscription)
-          <sl-card class="card-basic w-full">
+          <sl-card class="card-basic w-full text-sm">
             <div class="w-full flex items-center gap-4">
               <sl-avatar label="User avatar"></sl-avatar>
               <div class="flex flex-col">
-                <h4 class="text-lg font-bold">
+                <h4 class="text-base font-bold">
                   {{$subscription->name}}
                 </h4>
                 <p class="opacity-50">{{$subscription->email}}</p>
               </div>
               <!-- TODO Add remove subscriber functionality -->
-              <sl-button variant="danger" class="ml-auto" outline>Remove</sl-button>
+              {{-- <sl-button variant="danger" class="ml-auto" outline>Remove</sl-button> --}}
             </div>
           </sl-card>
           @endforeach

@@ -1,6 +1,8 @@
 <x-dashboard.layout>
   <x-dashboard.content-header>
-    Create newsletter
+    <h2 class="text-2xl font-bold">
+      Create newsletter
+    </h2>
   </x-dashboard.content-header>
 
   <form method="POST" action="/newsletters" class="w-full max-w-screen-md p-4 mx-auto">

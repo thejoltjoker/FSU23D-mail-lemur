@@ -17,14 +17,14 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
 - [x] Epost ska skickas med en Email service provider (ESP)
 
 - [ ] Dessa sidor ska finnas:
-  - [ ] Skapa konto (välj typ: kund eller prenumerant)
+  - [x] Skapa konto (välj typ: kund eller prenumerant)
   - [x] Lista alla nyhetsbrev
     - [x] Enskilt nyhetsbrev (prenumerera / avregistrera)
   - [x] Logga in
     - [x] Återställ lösenord
       - [x] Ange nytt lösenord
     - [x] Utloggad (Endast: meddelande om att man är utloggad)
-  - [ ] Mina sidor (Endast: välkomstmeddelande efter inloggning)
+  - [x] Mina sidor (Endast: välkomstmeddelande efter inloggning)
     - [x] Mina prenumerationer (för prenumeranter)
     - [x] Mina prenumeranter (för kunder)
     - [ ] Mitt nyhetsbrev / Redigera nyhetsbrev (för kunder)

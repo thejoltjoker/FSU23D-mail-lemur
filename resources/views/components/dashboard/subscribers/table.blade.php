@@ -9,9 +9,10 @@
   </thead>
 
   <tbody class="">
-    @foreach ($subscribers as $subscriber)
-    {{-- {{dd($subscriber)}} --}}
-    <x-dashboard.subscribers.table-row :subscriber="$subscriber" />
+    @foreach ($newsletters as $newsletter)
+    @foreach ($newsletter->subscriptions()->get() as $user)
+    <x-dashboard.subscribers.table-row :$user :$newsletter />
+    @endforeach
     @endforeach
   </tbody>
 

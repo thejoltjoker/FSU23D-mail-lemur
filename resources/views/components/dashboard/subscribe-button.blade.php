@@ -1,27 +1,7 @@
 @if ($user->id == $newsletter->user_id)
-<sl-button variant="neutral" outline type="submit" size="{{$size}}">
-    <sl-icon slot="prefix" name="at"></sl-icon>
-    Subscribers
-</sl-button>
-
+<x-buttons.subscribers :newsletter="$newsletter" :size="$size" />
 @elseif ($user->subscriptions->where('id', $newsletter->id)->isNotEmpty())
-<form method="POST" action="{{route('dashboard.subscriptions.destroy')}}">
-    @csrf
-    @method('DELETE')
-    <input type="hidden" name="newsletter_id" value="{{$newsletter->id}}">
-    <sl-button variant="danger" outline type="submit" size="{{$size}}">
-        <sl-icon slot="prefix" name="dash-circle"></sl-icon>
-        Unsubscribe
-    </sl-button>
-</form>
-
+<x-buttons.unsubscribe :newsletter="$newsletter" :size="$size" />
 @else
-<form method="POST" action="{{route('dashboard.subscriptions.store')}}">
-    @csrf
-    <input type="hidden" name="newsletter_id" value="{{$newsletter->id}}">
-    <sl-button variant="success" type="submit" size="{{$size}}">
-        <sl-icon slot="prefix" name="bookmark"></sl-icon>
-        Subscribe
-    </sl-button>
-</form>
+<x-buttons.subscribe :newsletter="$newsletter" :size="$size" />
 @endif

@@ -46,7 +46,6 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
 
     // Remove a subscription
-    // TODO Fix bug where unsubscribe deletes newsletter
     Route::delete('/subscriptions', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
 
     // Show user subscribers
