@@ -53,7 +53,6 @@ class UserController extends Controller
         ]);
 
         $form_fields['password'] = Hash::make($form_fields['password']);
-        // $form_fields['role_id'] = Role::where('name', 'subscriber')->first();
 
         $user = User::create($form_fields);
 
@@ -79,6 +78,7 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         auth()->logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

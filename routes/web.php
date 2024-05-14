@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\NewsletterSubscriberController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Newsletter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -50,6 +52,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     // Show user subscribers
     Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscribers');
 
+    // User profile
+    Route::singleton('/profile', ProfileController::class);
 });
 
 // Register account
@@ -63,6 +67,17 @@ Route::get('/login', [UserController::class, 'login'])->middleware('guest')->nam
 
 // Log out of existing account
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
+
+// Clear all user sessions
+Route::post('/clear-sessions', function () {
+    DB::table('sessions')->whereUserId(Auth::id())->delete();
+
+    return redirect('/')->with([
+        'variant' => 'primary',
+        'title' => 'Logged out',
+        'message' => 'You have been successfully logged out from all sessions',
+    ]);
+})->middleware('auth')->name('clear-sessions');
 
 // Authenticate user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);

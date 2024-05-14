@@ -39,9 +39,9 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
 - [x] En användare ska kunna vara både kund och prenumerant på samma gång.
 - [ ] Ett användarkonto ska ha ett personligt salt-värde som används i hash-funktionen för lösenordet
 - [x] Inloggade sessioner ska finnas med i databasen
-- [ ] En användare ska kunna logga ut från alla sina sessioner med ett knapptryck
-- [ ] “Ange nytt lösenord” måste vara en “hot link” som endast är giltig 20 minuter.
-- [ ] Alla sidor ska vara byggda med ett mvc-ramverk (Codeignitor är föreslaget, men andra går bra om man vill)
+- [x] En användare ska kunna logga ut från alla sina sessioner med ett knapptryck
+- [x] “Ange nytt lösenord” måste vara en “hot link” som endast är giltig 20 minuter.
+- [x] Alla sidor ska vara byggda med ett mvc-ramverk (Codeignitor är föreslaget, men andra går bra om man vill)
 
 ## Denna uppgift mäter följande moment från kursplanen
 

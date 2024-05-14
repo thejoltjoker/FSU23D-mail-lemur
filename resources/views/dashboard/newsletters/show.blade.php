@@ -8,7 +8,7 @@ $user = Auth::user();
       <div class="grid grid-cols-3 w-full">
 
         <div>
-          <sl-button variant="neutral" outline href="{{ route('dashboard.newsletters.index') }}">
+          <sl-button variant="neutral" outline href="{{ url()->previous() }}">
             <sl-icon slot="prefix" name="arrow-left"></sl-icon>
             Go back
           </sl-button>
