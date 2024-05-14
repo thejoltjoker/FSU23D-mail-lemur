@@ -25,7 +25,6 @@ Route::get('/', function () {
 
 Route::get('/newsletters', function () {
     return view('newsletters', ['newsletters' => Newsletter::all()]);
-    // return redirect(route('dashboard.newsletters.index'));
 });
 
 // Dashboard

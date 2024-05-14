@@ -35,7 +35,7 @@ class NewsletterController extends Controller
      */
     public function create()
     {
-        return view('dashboard.newsletters.create', []);
+        return view('dashboard.newsletters.create');
     }
 
     /**
@@ -45,8 +45,8 @@ class NewsletterController extends Controller
     {
         $form_fields = $request->validate([
             'title' => ['required'],
+            'tagline' => ['required'],
             'description' => ['required'],
-            'content' => ['required'],
             'user_id' => ['required'],
         ]);
 

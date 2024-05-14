@@ -11,8 +11,8 @@ class Newsletter extends Model
 
     protected $fillable = [
         'title',
+        'tagline',
         'description',
-        'content',
         'user_id',
     ];
 

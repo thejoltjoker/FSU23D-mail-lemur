@@ -1,3 +1,4 @@
+<!-- TODO Add remove button-->
 @php
 $user = Auth::user();
 @endphp

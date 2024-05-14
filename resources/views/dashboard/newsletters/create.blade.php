@@ -5,7 +5,7 @@
     </h2>
   </x-dashboard.content-header>
 
-  <form method="POST" action="/newsletters" class="w-full max-w-screen-md p-4 mx-auto">
+  <form method="POST" action="{{route('dashboard.newsletters.store')}}" class="w-full max-w-screen-md p-4 mx-auto">
     @csrf
     <div class="flex flex-col gap-4">
 
@@ -32,7 +32,7 @@
 
 
       <sl-textarea label="Description" placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit..."
-        name="content" class="[&::part(form-control-label)]:text-lg [&::part(form-control-label)]:mb-2">
+        name="description" class="[&::part(form-control-label)]:text-lg [&::part(form-control-label)]:mb-2">
         {{old('description')}}
       </sl-textarea>
 
