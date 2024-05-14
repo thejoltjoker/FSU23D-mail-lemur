@@ -5,11 +5,13 @@
     </h2>
   </x-dashboard.content-header>
 
-  <form method="POST" action="{{route('dashboard.newsletters.store')}}" class="w-full max-w-screen-md p-4 mx-auto">
+  <form method="POST" action="{{route('dashboard.newsletters.update', $newsletter)}}"
+    class="w-full max-w-screen-md p-4 mx-auto">
     @csrf
+    @method('PUT')
     <div class="flex flex-col gap-4">
 
-      <sl-input placeholder="My Newsletter" label="Title" value="{{old('title')}}" name="title"
+      <sl-input placeholder="My Newsletter" label="Title" value="{{$newsletter->title}}" name="title"
         class="[&::part(form-control-label)]:text-lg [&::part(form-control-label)]:mb-2">
       </sl-input>
       @error('title')
@@ -18,7 +20,7 @@
       </p>
       @enderror
 
-      <sl-input placeholder="The latest about me" label="Tagline" value="{{old('tagline')}}" name="tagline"
+      <sl-input placeholder="The latest about me" label="Tagline" value="{{$newsletter->tagline}}" name="tagline"
         class="[&::part(form-control-label)]:text-lg [&::part(form-control-label)]:mb-2">
       </sl-input>
       @error('tagline')
@@ -27,9 +29,10 @@
       </p>
       @enderror
 
-      <sl-textarea label="Description" placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit..."
-        name="description" class="[&::part(form-control-label)]:text-lg [&::part(form-control-label)]:mb-2">
-        {{old('description')}}
+      <sl-textarea label="Description" name="description"
+        class="[&::part(form-control-label)]:text-lg [&::part(form-control-label)]:mb-2"
+        value="{{$newsletter->description}}">
+
       </sl-textarea>
 
       @error('description')
@@ -53,7 +56,7 @@
     </div>
     <div class="mt-8">
 
-      <sl-button variant="primary" type="submit">Create</sl-button>
+      <sl-button variant="primary" type="submit">Update</sl-button>
       <sl-button variant="danger" outline href="{{url()->previous()}}">Discard</sl-button>
     </div>
   </form>

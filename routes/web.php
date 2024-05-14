@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
+use App\Http\Middleware\CustomerCheck;
 use App\Models\Newsletter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +51,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::delete('/subscriptions', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
 
     // Show user subscribers
-    Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscribers');
+    Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscribers')->middleware(CustomerCheck::class);
 
     // User profile
     Route::singleton('/profile', ProfileController::class);
@@ -141,7 +142,7 @@ Route::post('/reset-password', function (Request $request) {
 // 403 Unauthorized
 Route::get('/unauthorized', function () {
     return view('errors.unauthorized');
-});
+})->name('unauthorized');
 
 // 403 Unauthorized
 Route::get('/not-found', function () {

@@ -15,9 +15,15 @@ $user = Auth::user();
         </div>
 
         @if ($newsletter->author->id != $user->id)
-
         <div class="text-center">
           <x-dashboard.subscribe-button size="medium" :$newsletter :$user />
+        </div>
+        @elseif ($newsletter->author->id == $user->id)
+        <div class="text-center">
+          <sl-button variant="primary" outline href="{{ route('dashboard.newsletters.edit', $newsletter) }}">
+            <sl-icon slot="prefix" name="pencil"></sl-icon>
+            Edit
+          </sl-button>
         </div>
         @endif
 

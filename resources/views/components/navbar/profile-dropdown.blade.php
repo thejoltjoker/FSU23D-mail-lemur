@@ -1,5 +1,5 @@
 <div class="relative group">
-  <label for="menu-toggle" class="flex items-center gap-2 h-10 cursor-pointer group-hover:border-stone-200 border border-white rounded-md px-2 peer 
+  <label for="menu-toggle" class="flex items-center gap-2 h-10 cursor-pointer group-hover:border-stone-200 border border-white rounded-md px-2 peer min-w-28 
     has-[:checked]:border-stone-300 group-hover:has-[:checked]:border-stone-300 
     has-[:checked]:bg-stone-100 group-hover:has-[:checked]:bg-stone-100">
     <sl-avatar label="User avatar" style="--size:1.5rem"></sl-avatar>
@@ -8,7 +8,7 @@
   </label>
 
   <ul
-    class="absolute top-10 left-0 hidden z-50 bg-white border w-full rounded-md overflow-hidden py-2 peer-has-[:checked]:block">
+    class="absolute top-10 left-0 hidden z-50 bg-white border w-full rounded-md overflow-hidden py-2 peer-has-[:checked]:block min-w-fit whitespace-nowrap">
     <li>
       <a href="/dashboard/profile" class="block py-2 hover:bg-stone-200 px-4">
         Profile

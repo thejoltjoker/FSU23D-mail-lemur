@@ -1,4 +1,5 @@
 <aside class="min-h-full border-r border-stone-300 min-w-64 w-64 bg-white">
+  @if (Auth::user()->roles->where('name', 'customer')->isNotEmpty())
   <div class="p-4 h-20 flex items-center border-b border-stone-300">
     <sl-button class="w-full" variant="primary" outline href="{{route('dashboard.newsletters.create')}}">
       <a href="{{route('dashboard.newsletters.create')}}">
@@ -7,6 +8,7 @@
       </a>
     </sl-button>
   </div>
+  @endif
   <ul class="py-2">
     <li class="font-bold px-4 pt-2">Newsletters</li>
     <x-dashboard.sidebar.link route="dashboard.newsletters.index" icon="list-ul">

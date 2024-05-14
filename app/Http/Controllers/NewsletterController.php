@@ -35,6 +35,10 @@ class NewsletterController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->roles->where('name', 'customer')->isEmpty()) {
+            return redirect(route('unauthorized'));
+        }
+
         return view('dashboard.newsletters.create');
     }
 
@@ -66,7 +70,6 @@ class NewsletterController extends Controller
     {
         return view('dashboard.newsletters.show', [
             'newsletter' => $newsletter,
-
         ]);
     }
 
@@ -75,7 +78,14 @@ class NewsletterController extends Controller
      */
     public function edit(Newsletter $newsletter)
     {
-        //
+        if (Auth::user()->roles->where('name', 'customer')->isEmpty()
+        || $newsletter->user_id !== Auth::id()) {
+            return redirect(route('unauthorized'));
+        }
+
+        return view('dashboard.newsletters.edit', [
+            'newsletter' => $newsletter,
+        ]);
     }
 
     /**
@@ -83,7 +93,25 @@ class NewsletterController extends Controller
      */
     public function update(Request $request, Newsletter $newsletter)
     {
-        //
+        if (Auth::user()->roles->where('name', 'customer')->isEmpty()
+        || $newsletter->user_id !== Auth::id()) {
+            return redirect(route('unauthorized'));
+        }
+
+        $form_fields = $request->validate([
+            'title' => ['required'],
+            'tagline' => ['required'],
+            'description' => ['required'],
+            'user_id' => ['required'],
+        ]);
+
+        $newsletter->update($form_fields);
+
+        return redirect(route('dashboard.newsletters.show', $newsletter))->with([
+            'variant' => 'success',
+            'title' => 'Newsletter updated',
+            'message' => 'Your newsletter was updated successfully',
+        ]);
     }
 
     /**

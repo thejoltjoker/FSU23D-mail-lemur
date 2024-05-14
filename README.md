@@ -11,7 +11,7 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
 - [x] Databasen ska vara MySQL (eller Mariadb).
 - [x] Alla sidor ska vara skrivna i php (ingen react mot api tillåten för denna uppgift).
 - [x] Ett användarkonto ska lagra namn (för- [ ] och efternamn), epostadress och hash för lösenord.
-- [ ] Ett kundkonto ska ha information om nyhetsbrevet: namn och beskrivning
+- [x] Ett kundkonto ska ha information om nyhetsbrevet: namn och beskrivning
 - [x] En prenumerant ska enkelt kunna börja prenumerera och sluta prenumerera på ett nyhetsbrev
 - [x] Fungerande inloggning och återställning av lösenord, med epostutskick.
 - [x] Epost ska skickas med en Email service provider (ESP)
