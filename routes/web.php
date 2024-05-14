@@ -1,22 +1,20 @@
 <?php
 
-use App\Models\User;
-use App\Models\Newsletter;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\CustomerCheck;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\NewsletterSubscriberController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\NewsletterSubscriberController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\CustomerCheck;
+use App\Models\Newsletter;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (Auth::check()) {
@@ -58,7 +56,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
 });
 
 // Register account
-Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+Route::get('/register', [UserController::class, 'create'])->middleware('guest')->name('register');
 
 // Store a new user
 Route::post('/users', [UserController::class, 'store'])->middleware('guest');
@@ -85,59 +83,11 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Password reset
 // TODO Move into new controller
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'show'])->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'send'])->middleware('guest')->name('password.email');
 
-Route::post('/forgot-password', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
-
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
-
-    return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])->with([
-                    'variant' => 'success',
-                    'title' => 'Reset Link Sent',
-                    'message' => 'Reset link sent successfully.',
-                ])
-                : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
-
-Route::get('/reset-password/{token}', function (string $token) {
-    return view('auth.reset-password', ['token' => $token, 'email' => request('email')]);
-})->middleware('guest')->name('password.reset');
-
-Route::post('/reset-password', function (Request $request) {
-    $request->validate([
-        'token' => 'required',
-        'email' => 'required|email',
-        'password' => 'required|min:1|confirmed',
-    ]);
-
-    $status = Password::reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-        function (User $user, string $password) {
-            $user->forceFill([
-                'password' => Hash::make($password),
-            ])->setRememberToken(Str::random(60));
-
-            $user->save();
-
-            event(new PasswordReset($user));
-        }
-    );
-
-    return $status === Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))->with([
-                    'variant' => 'success',
-                    'title' => 'Password Reset',
-                    'message' => 'Your password has been successfully reset.',
-                ])
-
-                : back()->withErrors(['email' => [__($status)]]);
-})->middleware('guest')->name('password.update');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'show'])->middleware('guest')->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'send'])->middleware('guest')->name('password.update');
 
 // 403 Unauthorized
 Route::get('/unauthorized', function () {

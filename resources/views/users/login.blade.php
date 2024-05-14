@@ -16,8 +16,10 @@
           @enderror
           <sl-input type="password" placeholder="Password" password-toggle label="Password" name="password"></sl-input>
 
-          <p class="text-sm">Don't have an account? <a href="/register" class="text-[--sl-color-primary-500]">Sign
+          <p class="text-sm">Don't have an account? <a href="{{route('register')}}" class="text-[--sl-color-primary-500]">Sign
               up</a></p>
+          <p class="text-sm">Did you forget your password? <a href="{{route('password.request')}}"
+              class="text-[--sl-color-primary-500]">Reset password</a></p>
         </div>
         <div slot="footer">
           <sl-button variant="primary" type="submit" class="w-full">Log in</sl-button>
