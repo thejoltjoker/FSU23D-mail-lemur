@@ -9,9 +9,13 @@ Bygg en SaaS-tjänst för att kunder ska kunna hantera sina epost-listor. Vi kom
 1. Make sure you have Docker Desktop installed and running
 2. `git clone https://github.com/Medieinstitutet/uppgift-2-thejoltjoker.git`
 3. `cd uppgift-2-thejoltjoker`
-4. `./vendor/bin/sail up`
-5. Open new terminal window and run:
+4. Paste .env file into root folder
+5. `./vendor/bin/sail up`
+6. Open new terminal window, cd to root folder and run:
    1. `./vendor/bin/sail artisan migrate:fresh --seed`
+   2. `npm install`
+   3. `npm run dev`
+7. Open `http://localhost/` in a browser window
 
 ### Sitemap
 
